@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ltimindtree.chatbot.model.Message;
 import com.ltimindtree.chatbot.model.Users;
 import com.ltimindtree.chatbot.service.UserService;
 
@@ -26,10 +27,15 @@ public class UserController {
 		return flag;
  	}
 	
+	@PostMapping("user/login")
+	public Message userLogin(@RequestBody Users user) throws SQLException {
+		return userService.userLogin(user);
+	}
+	
 	@PostMapping("user/register")
 	public String userRegister(@RequestBody Users user) throws SQLException {	
 
-		String msg = userService.registerUser(user.getUsername(), user.getEmail(), user.getPassword());
+		String msg = userService.registerUser(user.getUsername(), user.getEmail(), user.getPassword(), user.getFirstname(), user.getLastname(), user.getPhone());
 		System.out.println(user);
 		return msg;
 	}

@@ -4,6 +4,10 @@ public class Users {
 	String username;
 	String email;
 	String password;
+	String firstname;
+	String lastname;
+	String phone;
+	
 	public String getUsername() {
 		return username;
 	}
@@ -22,19 +26,43 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Users(String username, String email, String password) {
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public Users(String username, String email, String password, String firstname, String lastname, String phone) {
 		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.phone = phone;
 	}
 	public Users() {
 		super();
 	}
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", email=" + email + ", password=" + password + "]";
+		return "Users [username=" + username + ", email=" + email + ", password=" + password + ", firstname="
+				+ firstname + ", lastname=" + lastname + ", phone=" + phone + "]";
 	}
+	
+	
 	
 	
 }

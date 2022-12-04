@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.ltimindtree.chatbot.model.Queries;
 
 @Repository
 public interface QueriesService {

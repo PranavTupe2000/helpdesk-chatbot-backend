@@ -10,7 +10,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.ltimindtree.chatbot.dbutil.DBUtil;
+import com.ltimindtree.chatbot.model.Admin;
+import com.ltimindtree.chatbot.model.Message;
 import com.ltimindtree.chatbot.model.Queries;
+
 import com.ltimindtree.chatbot.service.AdminService;
 
 @Service
@@ -61,6 +64,26 @@ public class AdminServiceImpl implements AdminService {
 		statement.setInt(1, id);
 		int i = (int) statement.executeLargeUpdate();
 		return "Row affected: " + i;
+	}
+
+	@Override
+	public Message adminLogin(Admin admin) throws SQLException {
+		Message msg = new Message("Failed");
+		
+		PreparedStatement statement = connection.prepareStatement("SELECT * FROM admin WHERE username = ? AND password = ? ;");
+		statement.setString(1, admin.getUsername());
+		statement.setString(2, admin.getPassword());
+		ResultSet rs = statement.executeQuery();
+		
+		while(rs.next()){
+			if(rs.getString(2).equals(admin.getUsername())) {
+				msg.setMessage("Success");
+			} else {
+				msg.setMessage("Failed");
+			}
+		}
+		
+		return msg;
 	}
 
 }

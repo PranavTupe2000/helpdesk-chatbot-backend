@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ltimindtree.chatbot.model.Admin;
+import com.ltimindtree.chatbot.model.Message;
 import com.ltimindtree.chatbot.model.Queries;
+
 import com.ltimindtree.chatbot.service.AdminService;
 
 @RestController
@@ -40,6 +43,11 @@ public class AdminController {
 	@DeleteMapping("/admin/delete/{id}")
 	public String deleteQuery(@PathVariable int id) throws SQLException {
 		return adminService.deleteQuery(id);
+	}
+	
+	@PostMapping("admin/login")
+	public Message userLogin(@RequestBody Admin admin) throws SQLException {
+		return adminService.adminLogin(admin);
 	}
 
 }
